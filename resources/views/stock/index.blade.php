@@ -15,7 +15,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.blade.php">Mahir Techno</a>
+            <a class="navbar-brand ps-3" href="/stock/index">Mahir Techno</a>
             </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -23,7 +23,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.blade.php">
+                            <a class="nav-link" href="/stock/index">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Stock Barang
                             </a>
