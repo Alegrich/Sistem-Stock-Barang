@@ -6,10 +6,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/stock', function () {
-    return view('stock.index');
+Route::get('/login', function () {
+    return view('login');
 });
 
-Route::get('/users', function () {
-    return view('users.index');
+Route::get('/register', function () {
+    return view('register');
 });
