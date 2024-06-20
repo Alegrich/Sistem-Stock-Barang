@@ -31,7 +31,7 @@
       </select>
                   <div class="text-center mt-5">
                     <button class="btn btn-primary">Register</button>
-                    <a href="login.html" class="nav-link">Already have an account?</a>
+                    <a href="login" class="nav-link">Already have an account?</a>
                   </div>
                 </form>
               </div>
