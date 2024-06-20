@@ -31,7 +31,7 @@
                   </div>
                   <div class="text-center mt-5">
                     <button class="btn btn-primary">Login</button> 
-                    <a href="register.html" class="nav-link">Don't have an account?</a>
+                    <a href="register" class="nav-link">Don't have an account?</a>
                   </div>
                 </form>
               </div>
