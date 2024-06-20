@@ -1,6 +1,6 @@
 <?php
 
 //membuat koneksi kedatabase
-$conn = mysqli_connect("localhost", "root", "", "stockbarang");
+$conn = mysqli_connect("localhost", "root", "", "stock_barang");
 
 ?>
