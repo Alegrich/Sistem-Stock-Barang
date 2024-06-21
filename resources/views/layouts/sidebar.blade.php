@@ -15,7 +15,7 @@
     <ul class="menu-inner py-1">
       <!-- Dashboards -->
       <li class="menu-item">
-        <a href="{{ route('dashboard') }}" class="menu-link ">
+        <a href="{{ route('admin.dashboard') }}" class="menu-link ">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Dashboards">Dashboards</div>
         </a>
@@ -28,21 +28,28 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="{{ route('items.index') }}" class="menu-link">
+            <a href="{{ route('admin.items.index') }}" class="menu-link">
                 <div data-i18n="Basic">Items List</div>
             </a>
         </li>      
           <li class="menu-item">
-            <a href="auth-register-basic.html" class="menu-link" target="_blank">
+            <a href="{{route('admin.items.stockIn')}}" class="menu-link" >
               <div data-i18n="Basic">Stock In</div>
             </a>
           </li>
           <li class="menu-item">
-            <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+            <a href="{{route('admin.items.stockOut')}}" class="menu-link" >
               <div data-i18n="Basic">Stock Out</div>
             </a>
           </li>
         </ul>
+      </li>
+      <!-- Supplier -->
+      <li class="menu-item">
+        <a href="{{route('admin.supplier.index')}}" class="menu-link ">
+          <i class="menu-icon tf-icons bx bxs-group"></i>
+          <div data-i18n="Dashboards">Supplier</div>
+        </a>
       </li>
       <!-- Pages -->
       <li class="menu-item">
@@ -52,7 +59,7 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="auth-login-basic.html" class="menu-link" target="_blank">
+            <a href="{{route('admin.staff.index')}}" class="menu-link">
               <div data-i18n="Basic">Staff List</div>
             </a>
           </li>
@@ -65,6 +72,7 @@
           <div data-i18n="Dashboards">Log Out</div>
         </a>
       </li>
+      
 
     </ul>
   </aside>

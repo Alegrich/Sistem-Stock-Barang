@@ -3,9 +3,9 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row g-4 mb-4">
-                <h1>List Items</h1>
+                <h1>Staff List</h1>
         </div>
-        <a href="{{route('items.add')}}" class="btn btn-success btn-sm mb-4">Tambah Items</a>
+        <a href="#" class="btn btn-success btn-sm mb-4">Tambah Staff</a>
         <!-- Users List Table -->
         <div class="table">
                 <div class="table-responsive">
@@ -14,15 +14,15 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Kategori</th>
+                                    <th>Email</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>Item 1</td>
-                                    <td>Kategori 1</td>
+                                    <td>Asep Kusnadi</td>
+                                    <td>asep@example.com</td>
                                     <td>
                                         <button class="btn btn-primary btn-sm">Edit</button>
                                         <button class="btn btn-danger btn-sm" id="delete-button">Delete</button>
@@ -30,14 +30,13 @@
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>Item 2</td>
-                                    <td>Kategori 2</td>
+                                    <td>Adi Kurniansyah</td>
+                                    <td>adi@example.com</td>
                                     <td>
                                         <button class="btn btn-primary btn-sm">Edit</button>
                                         <button class="btn btn-danger btn-sm" id="delete-button">Delete</button>
                                     </td>
                                 </tr>
-                                <!-- Tambahkan baris lainnya sesuai kebutuhan -->
                             </tbody>
                         </table>
                     </div>
