@@ -5,7 +5,7 @@
         <div class="row g-4 mb-4">
                 <h1>Supplier List</h1>
         </div>
-        <a href="{{route('supplier.add')}}" class="btn btn-success btn-sm mb-4">Tambah Supplier</a>
+        <a href="{{route('admin.supplier.add')}}" class="btn btn-success btn-sm mb-4">Tambah Supplier</a>
         <!-- Users List Table -->
         <div class="table">
                 <div class="table-responsive">

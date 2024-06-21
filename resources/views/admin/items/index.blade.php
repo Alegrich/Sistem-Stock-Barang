@@ -16,6 +16,7 @@
                                     <th>Nama</th>
                                     <th>Kategori</th>
                                     <th>SKU</th>
+                                    <th>Foto Items</th>
                                     <th>Jumlah</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -26,6 +27,7 @@
                                     <td>Item 1</td>
                                     <td>Kategori 1</td>
                                     <td><strong>FD-100-SQ</strong></td>
+                                    <td><strong>KOSONG</strong></td>
                                     <td><strong>25</strong></td>
                                     <td>
                                         <button class="btn btn-primary btn-sm">Edit</button>
@@ -37,6 +39,7 @@
                                     <td>Item 2</td>
                                     <td>Kategori 2</td>
                                     <td><strong>FD-100-SQ</strong></td>
+                                    <td><strong>KOSONG</strong></td>
                                     <td><strong>25</strong></td>
                                     <td>
                                         <button class="btn btn-primary btn-sm">Edit</button>

@@ -44,6 +44,13 @@
           </li>
         </ul>
       </li>
+      <!-- Category -->
+      <li class="menu-item">
+        <a href="{{route('admin.category.index')}}" class="menu-link ">
+          <i class="menu-icon tf-icons bx bx-category"></i>
+          <div data-i18n="Dashboards">Category</div>
+        </a>
+      </li>
       <!-- Supplier -->
       <li class="menu-item">
         <a href="{{route('admin.supplier.index')}}" class="menu-link ">

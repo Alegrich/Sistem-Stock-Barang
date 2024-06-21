@@ -35,6 +35,14 @@ Route::get('/admin/supplier/add', function () {
     return view('admin.supplier.add_supplier');
 })->name('admin.supplier.add');
 
+Route::get('/admin/category', function () {
+    return view('admin.category.index');
+})->name('admin.category.index');
+
+Route::get('/admin/category/add', function () {
+    return view('admin.category.add_category');
+})->name('admin.category.add');
+
 
 
 
