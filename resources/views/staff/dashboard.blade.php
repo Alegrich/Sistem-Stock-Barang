@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Users')
+@section('title', 'Staff')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row g-4 mb-4">
@@ -96,7 +96,7 @@
     </script>
     <script>
         const ctx = document.getElementById('myChart');
-      
+
         new Chart(ctx, {
           type: 'bar',
           data: {
@@ -116,5 +116,5 @@
           }
         });
       </script>
-       
+
 @endpush

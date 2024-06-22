@@ -101,5 +101,5 @@
             });
         });
     </script>
-       
+
 @endpush
