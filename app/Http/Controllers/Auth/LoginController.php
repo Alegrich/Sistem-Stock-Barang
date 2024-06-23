@@ -21,7 +21,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Autentikasi berhasil
-                if (Auth::user()['role'] === 'admin') {
+            if (Auth::user()->role === 'admin') {
                 // Jika pengguna adalah admin, arahkan ke halaman dashboard admin
                 return redirect()->route('admin.dashboard');
             } else {
