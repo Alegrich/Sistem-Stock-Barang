@@ -27,6 +27,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         return view('admin.category.index');
     })->name('admin.category.index');
 
+
     Route::get('/supplier', function () {
         return view('admin.supplier.index');
     })->name('admin.supplier.index');

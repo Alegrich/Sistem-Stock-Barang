@@ -14,7 +14,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // Pastikan role ada di sini
+        'role', 
     ];
 
     protected $hidden = [
@@ -27,8 +27,4 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function isAdmin()
-    {
-        return $this->role === 'admin';
-    }
 }
