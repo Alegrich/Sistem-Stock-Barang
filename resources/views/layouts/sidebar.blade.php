@@ -11,6 +11,8 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
+    @auth
+        @if(auth()->user()->role == 'admin')
         <!-- Dashboards -->
         <li class="menu-item">
             <a href="{{ route('admin.dashboard') }}" class="menu-link">
@@ -57,8 +59,7 @@
             </a>
         </li>
         <!-- Staff -->
-        @auth
-            @if(auth()->user()->role == 'admin')
+        
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-user"></i>
@@ -72,8 +73,38 @@
                         </li>
                     </ul>
                 </li>
-            @endif
-        @endauth
+        @else
+        <li class="menu-item">
+            <a href="{{ route('staff.dashboard') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Dashboards">Dashboards</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-package"></i>
+                <div data-i18n="Dashboards">Items</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('staff.items.index') }}" class="menu-link">
+                        <div data-i18n="Basic">Items List</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('staff.items.stockIn') }}" class="menu-link">
+                        <div data-i18n="Basic">Stock In</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('staff.items.stockOut') }}" class="menu-link">
+                        <div data-i18n="Basic">Stock Out</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        @endif
+    @endauth
 
         <!-- Logout -->
         <li class="menu-item">

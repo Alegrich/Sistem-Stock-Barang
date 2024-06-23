@@ -14,6 +14,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
             return view('admin.items.index');
         })->name('admin.items.index');
 
+        Route::get('/items/add', function () {
+            return view('admin.items.add_items');
+        })->name('admin.items.add');
+
         Route::get('/stockIn', function () {
             return view('admin.items.stockIn');
         })->name('admin.items.stockIn');
@@ -32,8 +36,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         return view('admin.supplier.index');
     })->name('admin.supplier.index');
 
+    Route::get('/supplier/add', function () {
+        return view('admin.supplier.add_supplier');
+    })->name('admin.supplier.add');
+
     Route::get('/staff', function () {
-        return view('admin.staff.index');
+        return view('admin.users.index');
     })->name('admin.staff.index');
 });
 
