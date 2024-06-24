@@ -2,7 +2,7 @@
 
 @section('title', 'Admin')
 
-@section('main', 'Dashboard')
+@section('main', 'cashboard')
 
 @section('location')
     <div class="breadcrumb-item"><a href="/admin">Dashboard Admin</a></div>
