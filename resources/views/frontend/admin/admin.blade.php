@@ -67,61 +67,48 @@
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h4>Tabel Data Barang</h4>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-
-                    <form form action="#" method="POST">
-                        <input type="hidden" value="#" name="id">
-                        <a href="/admin/crud-tambah" class="btn btn-success bi bi-file-earmark-plus-fill"> Tambah Data</a>
-                        <button type="button" class="btn btn-primary  bi bi-file-earmark-arrow-down position-relative">
-                            Unduh
-                            data</button>
-                    </form>
+                    <a href="{{ route('products.create') }}" class="btn btn-success bi bi-file-earmark-plus-fill"> Tambah
+                        Data</a>
+                    <button type="button" class="btn btn-primary  bi bi-file-earmark-arrow-down position-relative">
+                        Unduh
+                        data</button>
                 </div>
             </div>
             <table class="table table-hover">
-                <tr>
-                    <th>#</th>
-                    <th>Nama</th>
-                    <th>Kategori</th>
-                    <th>Supplier</th>
-                    <th>Stock Barang</th>
-                    <th>Tanggal ditambahkan</th>
-                    <th>Aksi</th>
-                </tr>
-
-                <tr>
-                    <td>1</td>
-                    <td>Jeruk</td>
-                    <td>Buah</td>
-                    <td>PT. Indofresh</td>
-                    <td>500 Kg</td>
-                    <td>00-00-0000</td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <a href="/admin/crud-edit" class="btn btn-success fa fa-edit"></a>
-                            <form action="" method="POST">
-                                <input type="hidden" value="#" name="id">
-                                <button class="btn btn-danger fa fa-trash"></button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Kangkung</td>
-                    <td>Sayur</td>
-                    <td>PT. Sayurmayur</td>
-                    <td>500 Kg</td>
-                    <td>00-00-0000</td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <a href="#" class="btn btn-success fa fa-edit"></a>
-                            <form action="" method="GET">
-                                <input type="hidden" value="#" name="id">
-                                <button class="btn btn-danger fa fa-trash"></button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nama</th>
+                        <th>Kategori</th>
+                        <th>Supplier</th>
+                        <th>Stock Barang</th>
+                        <th>Tanggal ditambahkan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->category->name }}</td>
+                            <td>{{ $product->supplier }}</td>
+                            <td>{{ $product->stock }}</td>
+                            <td>{{ $product->created_at }}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <a href="{{ route('products.edit', $product->id) }}"
+                                        class="btn btn-success fa fa-edit"></a>
+                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger fa fa-trash"></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
         {{-- table end --}}

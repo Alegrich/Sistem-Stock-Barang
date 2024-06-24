@@ -1,10 +1,7 @@
 <?php
 
-namespace Database\Seeders;
-
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +10,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $user = User::where('email', 'test@example.com')->first();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if ($user) {
+            // Update the existing user
+            $user->update([
+                'name' => 'Test User',
+                'password' => bcrypt('password'), // Replace 'password' with the actual password
+                'role' => 'admin', // Adjust this according to your ENUM definition for roles
+            ]);
+        } else {
+            // Create a new user if not found
+            User::factory()->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+                'password' => bcrypt('password'), // Replace 'password' with the actual password
+                'role' => 'admin', // Adjust this according to your ENUM definition for roles
+            ]);
+        }
     }
 }

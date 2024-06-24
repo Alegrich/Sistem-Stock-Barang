@@ -2,33 +2,29 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::view('/admin', 'frontend.admin.admin');
+    Route::view('/admin/crud-tambah', 'frontend.admin.create');
+    Route::view('/admin/crud-edit', 'frontend.admin.edit');
+    Route::view('/manajemen-staff', 'frontend.admin.manajemen-staff');
+    Route::view('/stockout', 'frontend.admin.stokout');
+    Route::view('/stockin', 'frontend.admin.stockin');
 
-Route::get('/admin', function () {
-    return view('frontend.admin.admin');
-});
-
-Route::get('/admin/crud-tambah', function () {
-    return view('frontend.admin.create');
-});
-
-Route::get('/admin/crud-edit', function () {
-    return view('frontend.admin.edit');
-});
-
-Route::get('/manajemen-staff', function () {
-    return view('frontend.admin.manajemen-staff');
-});
-Route::get('stockout', function () {
-    return view('frontend.admin.stokout');
-});
-Route::get('stockin', function () {
-    return view('frontend.admin.stockin');
+    Route::resource('products', ProductController::class);
+    Route::resource('categories', CategoryController::class);
 });
 
+Route::middleware(['auth', 'staff'])->group(function () {
+    Route::view('/staff', 'frontend.staff.dashboard');
+    Route::resource('products', ProductController::class)->except(['create', 'edit', 'update', 'destroy']);
+    Route::resource('categories', CategoryController::class)->except(['create', 'edit', 'update', 'destroy']);
+});
 
 Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
