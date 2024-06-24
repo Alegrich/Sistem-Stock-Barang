@@ -1,15 +1,18 @@
 <?php
 
+// routes/web.php
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::view('/admin', 'frontend.admin.admin');
+    Route::view('/admin', 'frontend.admin.admin')->name('admin.dashboard');
     Route::view('/admin/crud-tambah', 'frontend.admin.create');
     Route::view('/admin/crud-edit', 'frontend.admin.edit');
     Route::view('/manajemen-staff', 'frontend.admin.manajemen-staff');
