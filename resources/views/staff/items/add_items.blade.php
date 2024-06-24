@@ -24,7 +24,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="category">Kategori</label>
-                <select class="form-control" id="category" name="category">
+                <select class="form-control" id="category" name="id_categories">
                     <option value="">Pilih Kategori</option>
                     <option value="kategori1">Kategori 1</option>
                     <option value="kategori2">Kategori 2</option>

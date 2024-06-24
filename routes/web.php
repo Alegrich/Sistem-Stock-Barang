@@ -1,13 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Staff\StaffController;
 
-// Admin routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
     Route::prefix('items')->group(function () {
         Route::get('/', function () {
@@ -30,6 +29,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/category', function () {
         return view('admin.category.index');
     })->name('admin.category.index');
+    
+    Route::get('/category/add', function () {
+        return view('admin.category.add_category');
+    })->name('admin.category.add');
 
 
     Route::get('/supplier', function () {
@@ -47,10 +50,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 // Staff routes
 Route::middleware(['auth', 'staff'])->prefix('staff')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('staff.dashboard');
-    })->name('staff.dashboard');
-
+    Route::get('/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
     Route::prefix('items')->group(function () {
         Route::get('/', function () {
             return view('staff.items.index');
