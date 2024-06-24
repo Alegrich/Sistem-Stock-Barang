@@ -21,7 +21,7 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Password::defaults()],
-            'role' => ['required', 'string', Rule::in(['admin', 'staf'])],
+            'role' => ['required', 'string', Rule::in(['admin', 'staff'])],
         ]);
 
         $user = User::create([
@@ -40,19 +40,21 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
+            // Autentikasi berhasil
+                if (Auth::user()['role'] === 'admin') {
+                // Jika pengguna adalah admin, arahkan ke halaman dashboard admin
+                return redirect()->route('admin.dashboard');
+            } else {
+                // Jika pengguna adalah staff, arahkan ke halaman dashboard staff
+                return redirect()->route('staff.dashboard');
+            }
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        // Autentikasi gagal
+        return redirect()->back()->withErrors(['email' => 'Email atau kata sandi salah.']);
     }
 
     public function logout(Request $request)

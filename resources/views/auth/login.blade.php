@@ -52,7 +52,7 @@
                             </div>
                             @endif
                             <div class="card-body">
-                                <form method="POST" action="/login" class="user" novalidate="" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('login') }}" class="user" novalidate="" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">Email</label>
