@@ -1,5 +1,5 @@
-<!-- resources/views/layouts/app.blade.php -->
 
+<!-- resources/views/layouts/app.blade.php -->
 @extends('layouts.app')
 
 @section('title', 'Staff')
