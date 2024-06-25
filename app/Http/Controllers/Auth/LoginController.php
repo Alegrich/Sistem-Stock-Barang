@@ -27,7 +27,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            if (Auth::user()['email_verified_at'] != null) {
+
                 // Autentikasi berhasil
                 if (Auth::user()['role'] === 'admin') {
                     // Jika pengguna adalah admin, arahkan ke halaman dashboard admin
@@ -36,10 +36,7 @@ class LoginController extends Controller
                     // Jika pengguna adalah staff, arahkan ke halaman dashboard staff
                     return redirect()->route('staff.dashboard');
                 }
-            }
-            else{
-                return redirect()->back()->withErrors(['email' => 'Email belum di verifikasi.']);
-            }
+
         }
 
         // Autentikasi gagal
