@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') | Dashboard</title>
 
     @include('layouts.include')
@@ -41,6 +42,29 @@
 
     @include('layouts.script')
     @stack('script')
+
+
+    <script>
+        document.getElementById('logout-link').addEventListener('click', function(event) {
+            event.preventDefault(); // Mencegah perilaku default tautan
+
+            fetch('/logout', { // rute logout
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // logout berhasil, alihkan ke halaman login atau halaman lain
+                    window.location.href = '/login';
+                } else {
+                    // Handle error logout
+                    console.error('Logout failed');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -14,7 +14,9 @@
         <div class="col-md-12">
             <div class="card border-0 shadow rounded">
                 <div class="card-body">
-                    {{-- <a href="{{ route('blog.create') }}" class="btn btn-md btn-success mb-3">TAMBAH BLOG</a> --}}
+                    <a href="{{ route('tambah_stockin') }}" class="btn btn-md btn-success mb-3">
+                        <i class="fas fa-plus"></i> Tambah Stock In
+                    </a>
                     <table class="table table-bordered">
                         <thead>
                           <tr>
@@ -23,28 +25,31 @@
                             <th scope="col">SUPPLIER</th>
                             <th scope="col">QUANTITY</th>
                             <th scope="col">RECEIVED AT</th>
+                            <th scope="col">Aksi</th>
                           </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
+                            @foreach ($stockIns as $stockIn)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $stockIn->item->name }}</td>
+                                    <td>{{ $stockIn->supplier->nama_supplier }}</td>
+                                    <td>{{ $stockIn->quantity }}</td>
+                                    <td>{{ $stockIn->received_at }}</td>
+                                    <td>
+                                        <a href="{{ route('edit_stockin', $stockIn->id) }}" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <form action="{{ route('hapus_stockin', $stockIn->id) }}" method="POST" style="display:inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                                <i class="fas fa-trash"></i> Hapus
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -5,11 +5,15 @@
         "dev": "vite",
         "build": "vite build"
     },
+<<<<<<< HEAD
     "dependencies": {
+        "bootstrap": "^5.3.3",
         "jqvmap": "https://github.com/10bestdesign/jqvmap",
         "summernote": "^0.8.11",
         "weathericons": "^2.1.0"
     },
+=======
+>>>>>>> origin/FajarAngga
     "devDependencies": {
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0",

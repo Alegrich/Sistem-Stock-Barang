@@ -14,36 +14,33 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        {{-- <a href="{{ route('blog.create') }}" class="btn btn-md btn-success mb-3">TAMBAH BLOG</a> --}}
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">GAMBAR</th>
+                                    <th scope="col">NO</th>
                                     <th scope="col">NAMA</th>
                                     <th scope="col">JABATAN</th>
+                                    <th scope="col">EMAIL</th>
                                     <th scope="col">AKSI</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
+                                @foreach ($staffUsers as $index => $user)
+                                    <tr>
+                                        <th scope="row">{{ $index + 1 }}</th>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->role }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.edit_staff', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <form action="{{ route('admin.delete_user', $user->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                            </form>                                        
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

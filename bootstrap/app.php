@@ -11,7 +11,22 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // untuk admin
+        $middleware->appendToGroup('admin', [
+            \App\Http\Middleware\AdminMiddleware::class,
+        ]);
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        ]);
+
+        // untuk staf
+        $middleware->appendToGroup('staf', [
+            \App\Http\Middleware\StaffMiddleware::class,
+        ]);
+        $middleware->alias([
+            'staf' => \App\Http\Middleware\AdminMiddleware::class,
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

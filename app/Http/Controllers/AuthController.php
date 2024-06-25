@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
+
 
     public function registerForm() {
         return view('auth.register');
@@ -20,7 +20,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => ['required', 'confirmed'],
             'role' => ['required', 'string', Rule::in(['admin', 'staf'])],
         ]);
 
@@ -32,7 +32,7 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
-        return redirect('/login')->with('success', 'Register akun berhasil!');
+        return redirect('/login')->with('success', 'Akun berhasil dibuat!');
     }
     public function loginForm() {
         return view('auth.login');
@@ -47,12 +47,14 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            if (Auth::check() && Auth::user()->role == "staf") {
+                return redirect()->intended('/');
+            } else {
+                return redirect()->intended('/admin');
+            }
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        return back()->with('error', 'Kredensial login tidak valid!');
     }
 
     public function logout(Request $request)
