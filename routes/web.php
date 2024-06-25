@@ -20,7 +20,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function ()  {
     Route::view('/manajemen-staff', 'frontend.admin.manajemen-staff');
     Route::view('/stockout', 'frontend.admin.stokout');
     Route::view('/stockin', 'frontend.admin.stockin');
-
     Route::resource('products', ProductController::class);
     Route::resource('categories', CategoryController::class);
 });
