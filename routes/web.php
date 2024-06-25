@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Staff\StaffController;
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
@@ -29,7 +30,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/category', function () {
         return view('admin.category.index');
     })->name('admin.category.index');
-    
+
     Route::get('/category/add', function () {
         return view('admin.category.add_category');
     })->name('admin.category.add');
@@ -67,11 +68,19 @@ Route::middleware(['auth', 'staff'])->prefix('staff')->group(function () {
 });
 
 // Authentication routes
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+ Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Register route
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
+
+
+// Route::get('/login', function () {
+//     return view('auth.login');
+// });
+// Route::get('/register', function () {
+//     return view('auth.register');
+// });
+

@@ -20,12 +20,13 @@
     <link rel="shortcut icon" href="{{ asset('icon.png') }}" type="image/x-icon" />
     <!-- Tabler Core -->
     <link href="{{ asset('dist/css/tabler.min.css') }}" rel="stylesheet" />
+    <!--<script src="{{ asset('assets/js/script.js')}}"></script>-->
 </head>
 
 <body class="antialiased border-top-wide border-primary d-flex flex-column">
     <div class="flex-fill d-flex flex-column justify-content-center">
         <div class="container-tight py-6">
-            <form class="card card-md border-0 rounded-3" action="{{ route('register') }}" method="POST">
+            <form class="card card-md border-0 rounded-3" action="{{ route('register.submit') }}" method="POST">
                 @csrf
                 <div class="card-body">
                     <h3 class="text-center mb-3 font-weight-medium">
