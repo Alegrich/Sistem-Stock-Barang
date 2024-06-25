@@ -1,4 +1,3 @@
-
 @extends('layouts.parent')
 
 @section('title', 'Staff')
