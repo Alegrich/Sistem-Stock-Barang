@@ -71,6 +71,7 @@ Route::middleware(['auth', 'staff'])->prefix('staff')->group(function () {
         })->name('staff.items.stockOut');
     });
 });
+<<<<<<< Updated upstream
 
 // Authentication routes
  Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -82,3 +83,17 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 
 
+=======
+Route::get('/items', function () {
+    return view('items.index');
+})->name('items.index');
+Route::get('/items/add', function () {
+    return view('items.add_items');
+})->name('items.add');
+Route::get('/stock/in', function () {
+    return view('stock.masuk');
+})->name('stock.in');
+Route::get('/stock/out', function () {
+    return view('stock.keluar');
+})->name('stock.out');
+>>>>>>> Stashed changes
