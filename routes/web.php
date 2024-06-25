@@ -13,6 +13,7 @@ use App\Http\Controllers\Staff\StaffController;
 
 
 
+
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function ()  {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::view('/admin/crud-tambah', 'frontend.admin.create');
