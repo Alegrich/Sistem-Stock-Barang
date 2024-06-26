@@ -5,7 +5,8 @@
         <div class="row g-4 mb-4">
                 <h1>List Kategori</h1>
         </div>
-        <a href="{{route('admin.category.add')}}" class="btn btn-success btn-sm mb-4">Tambah Category</a>
+        {{-- <a href="{{route('add_category')}}" class="btn btn-success btn-sm mb-4">Tambah Category</a> --}}
+        <a href="#" class="btn btn-success btn-sm mb-4">Tambah Category</a>
         <!-- Users List Table -->
         <div class="table">
                 <div class="table-responsive">

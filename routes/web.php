@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ItemsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -9,31 +11,14 @@ use App\Http\Controllers\Staff\StaffController;
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
      Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
-    Route::prefix('items')->group(function () {
-        Route::get('/', function () {
-            return view('admin.items.index');
-        })->name('admin.items.index');
+     Route::resource('items', ItemsController::class);
 
-        Route::get('/items/add', function () {
-            return view('admin.items.add_items');
-        })->name('admin.items.add');
-
-        Route::get('/stockIn', function () {
-            return view('admin.items.stockIn');
-        })->name('admin.items.stockIn');
-
-        Route::get('/stockOut', function () {
-            return view('admin.items.stockOut');
-        })->name('admin.items.stockOut');
-    });
-
-    Route::get('/category', function () {
-        return view('admin.category.index');
-    })->name('admin.category.index');
-
-    Route::get('/category/add', function () {
-        return view('admin.category.add_category');
-    })->name('admin.category.add');
+     Route::prefix('items')->group(function () {
+         Route::get('/stockIn', [ItemsController::class, 'stockIn'])->name('admin.items.stockIn');
+         Route::get('/stockOut', [ItemsController::class, 'stockOut'])->name('admin.items.stockOut');
+     });
+ 
+     Route::resource('category', CategoryController::class);
 
 
     Route::get('/supplier', function () {
@@ -77,10 +62,10 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 
 
-// Route::get('/login', function () {
-//     return view('auth.login');
-// });
-// Route::get('/register', function () {
-//     return view('auth.register');
-// });
+Route::get('/login', function () {
+    return view('auth.login');
+});
+Route::get('/register', function () {
+    return view('auth.register');
+});
 

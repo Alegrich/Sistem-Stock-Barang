@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,7 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::all();
-        return view('Category.index', compact('items'));
+        return view('admin.category.index', compact('category'));
     }
 
     /**
@@ -21,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.add_category', compact('add_category'));
     }
 
     /**
@@ -29,7 +30,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Category::create([
+            'name' => $validatedData['name'],
+        ]);
+        return redirect()->route('admin.category.index')->with('success', 'Category berhasil ditambahkan.');
+    
     }
 
     /**

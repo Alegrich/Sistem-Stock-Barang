@@ -28,7 +28,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('admin.items.index') }}" class="menu-link">
+                    <a href="{{ route('items') }}" class="menu-link">
                         <div data-i18n="Basic">Items List</div>
                     </a>
                 </li>
@@ -46,7 +46,7 @@
         </li>
         <!-- Category -->
         <li class="menu-item">
-            <a href="{{ route('admin.category.index') }}" class="menu-link">
+            <a href="{{ route('category') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-category"></i>
                 <div data-i18n="Dashboards">Category</div>
             </a>
