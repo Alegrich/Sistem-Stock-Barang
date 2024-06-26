@@ -1,14 +1,18 @@
-@extends('layouts.app')
-@section('title', 'Users')
+@extends('layouts.parent')
+
+@section('title', 'Admin')
+
+@section('main', 'Tambah Supplier')
+
+@section('location')
+    <div class="breadcrumb-item">
+    </div>
+@endsection
+
 @section('content')
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="row g-4 mb-4">
-                <h1>Form Tambah Supplier</h1>
-        </div>
-        <!-- Users List Table -->
-        <div class="container mt-5">
+<div class="container-xxl flex-grow-1 container-p-y">
                 <!-- Form -->
-                <form>
+                <form >
                     <div class="form-group mb-3">
                         <label for="name">Nama</label>
                         <input type="text" class="form-control" id="name" placeholder="Masukkan Nama">
@@ -23,11 +27,9 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-            </div>
-        <!-- Modal Backdrop -->
-    </div>
+    <!-- Modal Backdrop -->
+</div>
 @endsection
-
 @push('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -91,5 +93,8 @@
             });
         });
     </script>
-       
+
 @endpush
+
+
+

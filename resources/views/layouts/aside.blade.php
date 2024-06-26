@@ -8,44 +8,65 @@
     <ul class="sidebar-menu">
         @if (Auth::check() && Auth::user()->role == 'admin')
             <li class="menu-header">Dashboard</li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="index-0.html">General Dashboard</a></li>
-                    <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
-                </ul>
-            </li>
-            <li class="menu-header">Starter</li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Article</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
-                </ul>
-            </li>
-        @endif
-        <li class="{{ Request::path() == '/' ? 'active' : '' }}"><a class="nav-link" href="/"><i
-                    class="fas fa-home"></i>
-                <span>Dashboard</span></a></li>
-        <li class="{{ Str::startsWith(Request::path(), 'admin') ? 'active' : '' }}"><a class="nav-link"
-                href="/admin"><i class="fas fa-home"></i>
+            <li class="{{ request()->routeIs('admin.*') ? 'active' : '' }}"><a class="nav-link"
+                href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i>
                 <span>Dashboard Admin</span></a></li>
-        <li class="{{ Request::path() == 'manajemen-staff' ? 'active' : '' }}"><a class="nav-link"
-                href="/manajemen-staff"><i class="fas fa-user"></i>
-                <span>Manajemen Staff</span></a></li>
-        <li class="nav-item dropdown {{ Str::startsWith(Request::path(), 'stock') ? 'active' : '' }}">
+
+
+            <li class="menu-header">Starter</li>
+
+            <li class="{{ request()->routeIs('items.*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('items.index') }}">
+                    <i class="fas fa-box"></i>
+                    <span>Items</span>
+                </a>
+            </li>            
+            <li class="{{ request()->routeIs('category.*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('category.index') }}">
+                    <i class="fa-solid fa-list"></i>
+                    <span>Category</span>
+                </a>
+            </li>            
+            <li class="{{ request()->routeIs('supplier.*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('supplier.index') }}">
+                    <i class="fas fa-truck"></i>
+                    <span>Supplier</span>
+                </a>
+            </li>            
+
+
+            <li class="nav-item dropdown {{ Str::startsWith(Request::path(), 'admin/stock') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-box"></i>
+                    <span>Stock</span></a>       
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->routeIs('stockin.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.stockin.index') }}">Stock In</a></li>
+                    <li class="{{ request()->routeIs('stockout.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.stockout.index') }}">Stock Out</a></li>
+                </ul>
+            </li>
+        @else
+        <li class="menu-header">Dashboard</li>
+        <li class="{{ request()->routeIs('staff.*') ? 'active' : '' }}"><a class="nav-link"
+            href="{{route('staff.dashboard')}}"><i class="fas fa-home"></i>
+            <span>Dashboard Staff</span></a></li>
+
+
+        <li class="menu-header">Starter</li>
+
+        <li class="{{ request()->routeIs('#') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('items.index') }}">
+                <i class="fas fa-box"></i>
+                <span>Items</span>
+            </a>
+        </li>
+        <li class="nav-item dropdown {{ Str::startsWith(Request::path(), 'staff/stock') ? 'active' : '' }}">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-box"></i>
-                <span>Stock</span></a>
+                <span>Stock</span></a>       
             <ul class="dropdown-menu">
-                <li class="{{ Request::path() == 'stockin' ? 'active' : '' }}"><a class="nav-link" href="/stockin">Stock
-                        In</a></li>
-                <li class="{{ Request::path() == 'stockout' ? 'active' : '' }}"><a class="nav-link"
-                        href="/stockout">Stock Out</a></li>
+                <li class="{{ request()->routeIs('staff.stockin.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('staff.stockin.index') }}">Stock In</a></li>
+                <li class="{{ request()->routeIs('staff.stockout.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('staff.stockout.index') }}">Stock Out</a></li>
             </ul>
         </li>
+        @endif
 
     </ul>
 

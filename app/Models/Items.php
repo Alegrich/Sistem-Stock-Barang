@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Items extends Model
 {
     use HasFactory;
 
@@ -16,4 +16,9 @@ class Item extends Model
         'image',
         'id_categories' 
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

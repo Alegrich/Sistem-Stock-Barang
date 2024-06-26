@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Item;
+use App\Models\Items;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; // Tambahkan ini di bagian atas untuk menggunakan Str::upper
+use Illuminate\Support\Str;
 
 
 class ItemsController extends Controller
@@ -15,8 +16,8 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
-        return view('items.index', compact('items'));
+        $items = Items::all();
+        return view('admin.items.index', compact('items'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        return view('items.add_items', compact('add_items'));
+        return view('admin.items.add_items');
     }
 
     /**
@@ -51,7 +52,7 @@ class ItemsController extends Controller
     }
 
     // Create new item
-    Item::create([
+    Items::create([
         'name' => $validatedData['name'],
         'description' => $validatedData['description'],
         'sku' => $sku,
@@ -82,10 +83,26 @@ class ItemsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, Items $items)
+{
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'id_categories' => 'required|exists:categories,id',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // optional: validasi gambar
+    ]);
+
+    if ($request->hasFile('image')) {
+        // Menghandle upload gambar baru
+        $imagePath = $request->file('image')->store('items', 'public');
+        $validatedData['image'] = $imagePath;
     }
+    // Update data item
+    $items->update($validatedData);
+
+    return redirect()->route('admin.items.index')->with('success', 'Items Berhasil di Update.');
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -93,15 +110,5 @@ class ItemsController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function stockIn()
-    {
-        return view('admin.items.stockIn');
-    }
-
-    public function stockOut()
-    {
-        return view('admin.items.stockOut');
     }
 }

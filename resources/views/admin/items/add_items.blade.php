@@ -1,42 +1,49 @@
-@extends('layouts.app')
-@section('title', 'Users')
-@section('content')
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="row g-4 mb-4">
-        </div>
-        <!-- Users List Table -->
-        <div class="container mt-5">
-                <!-- Form -->
-                <form>
-                    <div class="form-group mb-3">
-                        <label for="name">Nama</label>
-                        <input type="text" class="form-control" id="name" placeholder="Masukkan Nama">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="name">Deskripsi</label>
-                        <input type="text" class="form-control" id="name" placeholder="Masukkan Nama">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="name">Gambar Items</label>
-                        <input type="file" class="form-control" id="name" placeholder="Masukkan Nama">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="category">Kategori</label>
-                        <select class="form-control" id="category">
-                            <option value="">Pilih Kategori</option>
-                            <option value="kategori1">Kategori 1</option>
-                            <option value="kategori2">Kategori 2</option>
-                            <option value="kategori3">Kategori 3</option>
-                            <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-        <!-- Modal Backdrop -->
+
+@extends('layouts.parent')
+
+@section('title', 'Admin')
+
+@section('main', 'Tambah Items')
+
+@section('location')
+    <div class="breadcrumb-item">
     </div>
 @endsection
 
+@section('content')
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row g-4 mb-4">
+        
+    </div>
+            <!-- Form -->
+            <form >
+                <div class="form-group mb-3">
+                    <label for="name">Nama</label>
+                    <input type="text" class="form-control" id="name" placeholder="Masukkan Nama">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="name">Deskripsi</label>
+                    <input type="text" class="form-control" id="name" placeholder="Masukkan Nama">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="name">Gambar Items</label>
+                    <input type="file" class="form-control" id="name" placeholder="Masukkan Nama">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="category">Kategori</label>
+                    <select class="form-control" id="category">
+                        <option value="">Pilih Kategori</option>
+                        <option value="kategori1">Kategori 1</option>
+                        <option value="kategori2">Kategori 2</option>
+                        <option value="kategori3">Kategori 3</option>
+                        <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    <!-- Modal Backdrop -->
+</div>
+@endsection
 @push('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -100,5 +107,7 @@
             });
         });
     </script>
-       
+
 @endpush
+
+

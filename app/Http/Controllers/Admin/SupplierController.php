@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Supplier;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -13,7 +14,7 @@ class SupplierController extends Controller
     public function index()
     {
         $supplier = Supplier::all();
-        return view('Category.index', compact('items'));
+        return view('admin.supplier.index', compact('supplier'));
     }
 
     /**
@@ -21,7 +22,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.supplier.add_supplier');
     }
 
     /**
@@ -45,7 +46,7 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.supplier.edit_supplier');
     }
 
     /**
