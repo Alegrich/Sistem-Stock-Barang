@@ -1,15 +1,17 @@
 <?php
 
+// routes/web.php
+
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ItemsController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Staff\StaffController;
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
      Route::resource('items', ItemsController::class);
 
@@ -61,11 +63,4 @@ Route::middleware(['auth', 'staff'])->prefix('staff')->group(function () {
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 
-
-Route::get('/login', function () {
-    return view('auth.login');
-});
-Route::get('/register', function () {
-    return view('auth.register');
-});
 
