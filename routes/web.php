@@ -3,51 +3,28 @@
 // routes/web.php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ItemsController;
+use App\Http\Controllers\Admin\StockInController;
+use App\Http\Controllers\Admin\StockOutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Staff\StaffController;
+use App\Http\Controllers\Admin\SupplierController;
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
-    Route::prefix('items')->group(function () {
-        Route::get('/', function () {
-            return view('admin.items.index');
-        })->name('admin.items.index');
+     Route::resource('items', ItemsController::class);
 
-        Route::get('/items/add', function () {
-            return view('admin.items.add_items');
-        })->name('admin.items.add');
+     Route::resource('stockin', StockInController::class)->names('admin.stockin');
+     Route::resource('stockout', StockOutController::class)->names('admin.stockout');
+    
+ 
+     Route::resource('category', CategoryController::class);
 
-        Route::get('/stockIn', function () {
-            return view('admin.items.stockIn');
-        })->name('admin.items.stockIn');
-
-        Route::get('/stockOut', function () {
-            return view('admin.items.stockOut');
-        })->name('admin.items.stockOut');
-    });
-
-    Route::get('/category', function () {
-        return view('admin.category.index');
-    })->name('admin.category.index');
-
-    Route::get('/category/add', function () {
-        return view('admin.category.add_category');
-    })->name('admin.category.add');
-
-
-    Route::get('/supplier', function () {
-        return view('admin.supplier.index');
-    })->name('admin.supplier.index');
-
-    Route::get('/supplier/add', function () {
-        return view('admin.supplier.add_supplier');
-    })->name('admin.supplier.add');
+     Route::resource('supplier', SupplierController::class);
 
     Route::get('/staff', function () {
         return view('admin.users.index');
@@ -57,19 +34,10 @@ Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboa
 // Staff routes
 Route::middleware(['auth', 'staff'])->prefix('staff')->group(function () {
     Route::get('/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
-    Route::prefix('items')->group(function () {
-        Route::get('/', function () {
-            return view('staff.items.index');
-        })->name('staff.items.index');
-
-        Route::get('/stockIn', function () {
-            return view('staff.items.stockIn');
-        })->name('staff.items.stockIn');
-
-        Route::get('/stockOut', function () {
-            return view('staff.items.stockOut');
-        })->name('staff.items.stockOut');
-    });
+    Route::resource('items', ItemsController::class);
+    Route::resource('stockin', StockInController::class, ['as' => 'staff']);
+    Route::resource('stockout', StockOutController::class, ['as' => 'staff']);
+   
 });
 
 // Authentication routes

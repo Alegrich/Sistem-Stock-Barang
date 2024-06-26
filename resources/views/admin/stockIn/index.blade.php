@@ -5,7 +5,6 @@
 @section('main', 'Stock In')
 
 @section('location')
-    <div class="breadcrumb-item">Stock In</div>
 @endsection
 
 @section('content')

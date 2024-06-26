@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-abstract class Controller
-{
-    // Jika diperlukan, definisikan properti atau metode lain di sini
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 
-    protected $routeMiddleware = [
-        'admin' => \App\Http\Middleware\AdminMiddleware::class,
-        'staff' => \App\Http\Middleware\StaffMiddleware::class,
-    ];
+class Controller extends BaseController
+{
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
