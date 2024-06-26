@@ -40,10 +40,10 @@
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-box"></i>
                 <span>Stock</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ Request::path() == 'stockin' ? 'active' : '' }}"><a class="nav-link" href="/stockin">Stock
+                <li class="{{ Request::path() == 'stockIn' ? 'active' : '' }}"><a class="nav-link" href="{{route('admin.items.stockIn')}}">Stock
                         In</a></li>
-                <li class="{{ Request::path() == 'stockout' ? 'active' : '' }}"><a class="nav-link"
-                        href="/stockout">Stock Out</a></li>
+                <li class="{{ Request::path() == 'stockOut' ? 'active' : '' }}"><a class="nav-link"
+                        href="{{route('admin.items.stockOut')}}">Stock Out</a></li>
             </ul>
         </li>
 

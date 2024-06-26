@@ -67,8 +67,7 @@
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h4>Tabel Data Barang</h4>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="{{ route('products.create') }}" class="btn btn-success bi bi-file-earmark-plus-fill"> Tambah
-                        Data</a>
+                    
                     <button type="button" class="btn btn-primary  bi bi-file-earmark-arrow-down position-relative">
                         Unduh
                         data</button>
@@ -87,27 +86,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($products as $product)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->category->name }}</td>
-                            <td>{{ $product->supplier }}</td>
-                            <td>{{ $product->stock }}</td>
-                            <td>{{ $product->created_at }}</td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <a href="{{ route('products.edit', $product->id) }}"
-                                        class="btn btn-success fa fa-edit"></a>
-                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger fa fa-trash"></button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
+                    
                 </tbody>
             </table>
         </div>
