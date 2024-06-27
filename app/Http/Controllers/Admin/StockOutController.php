@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Items;
 use App\Models\StockOut;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,7 +24,9 @@ class StockOutController extends Controller
      */
     public function create()
     {
-        return view('admin.stockOut.create_stockOut');
+        $items = Items::all();
+        $supplier = Supplier::all();
+        return view('admin.stockOut.create_stockOut', compact('items', 'supplier'));
     }
 
     /**

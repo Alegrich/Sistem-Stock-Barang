@@ -16,12 +16,12 @@
                             @foreach($items as $item)
                                 <option value="">Pilih Items</option>
                                 <option value="{{$item->name}}">{{$item->name}}</option>
-                            @endforeach
+                            @endforeach 
                         </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="category">Supplier</label>
-                        <select class="form-control" id="category" required>
+                        <select class="form-control" id="category" required></select>
                             @foreach($supplier as $supply)
                                 <option value="">Pilih Supplier</option>
                                 <option value="{{$supply->name}}">{{$supply->name}}</option>

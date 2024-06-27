@@ -28,6 +28,7 @@
                                 <option value="{{$supply->name}}">{{$supply->name}}</option>
                             @endforeach
                         </select>
+                        
                     </div>
                     <div class="form-group mb-3">
                         <label for="name">Quantity</label>

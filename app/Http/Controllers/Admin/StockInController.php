@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Items;
 use App\Models\stockIn;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 
 class StockInController extends Controller
@@ -22,7 +24,9 @@ class StockInController extends Controller
      */
     public function create()
     {
-        return view('admin.stockIn.create_stockIn');
+        $items = Items::all();
+        $supplier = Supplier::all();
+        return view('admin.stockIn.create_stockIn', compact('items', 'supplier'));
     }
 
     /**
