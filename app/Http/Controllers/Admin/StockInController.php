@@ -1,14 +1,18 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class StockInController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        return view('admin.dashboard');
+        return view('admin.stockIn.index');
     }
 
     /**
@@ -16,7 +20,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -24,7 +28,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
@@ -32,7 +36,7 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        
+        //
     }
 
     /**
@@ -40,7 +44,7 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        
+        //
     }
 
     /**
@@ -48,7 +52,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+        //
     }
 
     /**
@@ -56,6 +60,6 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        
+        //
     }
 }

@@ -1,43 +1,28 @@
-@extends('layouts.app')
-@section('title', 'Users')
-@section('content')
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="row g-4 mb-4">
-                <h1>Stock Out</h1>
-        </div>
-        <!-- Users List Table -->
-        <div class="container mt-5">
-                <!-- Form -->
-                <form>
-                    <div class="form-group mb-3">
-                        <label for="category">Items</label>
-                        <select class="form-control" id="category">
-                            <option value="">Pilih Items</option>
-                            <option value="items1">Items 1</option>
-                            <option value="items2">Items 2</option>
-                            <option value="items3">Items 3</option>
-                        </select>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="category">Supplier</label>
-                        <select class="form-control" id="category">
-                            <option value="">Pilih Supplier</option>
-                            <option value="supplier1">Supplier 1</option>
-                            <option value="supplier2">Supplier 2</option>
-                            <option value="supplier3">Supplier 3</option>
-                        </select>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="name">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" placeholder="Masukkan Jumlah stock yang keluar">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-        <!-- Modal Backdrop -->
+@extends('layouts.parent')
+
+@section('title', 'Admin')
+
+@section('main', 'Ubah Kategori')
+
+@section('location')
+    <div class="breadcrumb-item">
     </div>
 @endsection
 
+@section('content')
+<div class="container-xxl flex-grow-1 container-p-y">
+                <!-- Form -->
+                <form action="{{ route('category.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group mb-3">
+                        <label for="name">Nama</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+    <!-- Modal Backdrop -->
+</div>
+@endsection
 @push('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -101,5 +86,7 @@
             });
         });
     </script>
-       
+
 @endpush
+
+
