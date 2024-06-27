@@ -8,25 +8,25 @@
         <!-- Users List Table -->
         <div class="container mt-5">
                 <!-- Form -->
-                <form action="{{route('admin.stockin.update', ['stockin'])}}" method="POST">
+                <form action="{{route('admin.stockin.store')}}" method="POST">
                     @csrf
-                    @method('PUT')
+                    @method('POST')
                     <div class="form-group mb-3">
                         <label for="category">Items</label>
-                        <select class="form-control" id="category">
-                            <option value="">Pilih Items</option>
-                            <option value="items1">Items 1</option>
-                            <option value="items2">Items 2</option>
-                            <option value="items3">Items 3</option>
+                        <select class="form-control" id="category" required>
+                            @foreach($items as $item)
+                                <option value="">Pilih Items</option>
+                                <option value="{{$item->name}}">{{$item->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="category">Supplier</label>
-                        <select class="form-control" id="category">
-                            <option value="">Pilih Supplier</option>
-                            <option value="supplier1">Supplier 1</option>
-                            <option value="supplier2">Supplier 2</option>
-                            <option value="supplier3">Supplier 3</option>
+                        <select class="form-control" id="category" required>
+                            @foreach($supplier as $supply)
+                                <option value="">Pilih Supplier</option>
+                                <option value="{{$supply->name}}">{{$supply->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group mb-3">

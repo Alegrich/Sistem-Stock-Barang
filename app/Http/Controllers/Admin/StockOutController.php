@@ -30,23 +30,22 @@ class StockOutController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'id_name' => 'required|exists:name,id',
-            'id_supplier' => 'required|exists:supplier,id',
+        $validate = $request->validate([
+            'id_items' => 'required|string|max:255',
+            'id_suppliers' => 'required|string|max:255',
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $stockOut = StockOut::create([
-            'id_name' => $request->id_name,
-            'id_supplier' => $request->id_supplier,
-            'quantity' => $request->quantity,
+        $stockOut = stockOut::create([
+            'id_items' => $validate['id_items'],
+            'id_suppliers' => $validate['id_suppliers'],
+            'quantity' => $validate['quantity'],
         ]);
-
-        $product = $stockOut->items;
-        $product->quantity -= $request->quantity;
+        $product = $stockOut;
+        $product->quantity -= $validate['quantity'];
         $product->save();
 
-        return view(route('admin.stockout.index'));
+        return view('admin.stockOut.index');
     }
 
     /**
