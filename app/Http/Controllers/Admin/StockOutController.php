@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-use App\Models\StockOut;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +12,7 @@ class StockOutController extends Controller
     public function index()
     {
         return view('admin.stockOut.index');
-        
+
     }
 
     /**
@@ -36,7 +34,7 @@ class StockOutController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $stockOut = StockOut::create([
+        $stockOut = StockOutController::create([
             'id_name' => $request->id_name,
             'id_supplier' => $request->id_supplier,
             'quantity' => $request->quantity,
@@ -70,7 +68,7 @@ class StockOutController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // 
+        //
     }
 
     /**
