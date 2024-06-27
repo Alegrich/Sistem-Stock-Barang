@@ -9,20 +9,31 @@
     </div>
 @endsection
 
-@section('content')
-<div class="container-xxl flex-grow-1 container-p-y">
-                <!-- Form -->
-                <form action="{{ route('category.store') }}" method="POST">
-                    @csrf
-                    <div class="form-group mb-3">
-                        <label for="name">Nama</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-    <!-- Modal Backdrop -->
-</div>
+@extends('layouts.parent')
+
+@section('title', 'Edit Kategori')
+
+@section('main', 'Edit Kategori')
+
+@section('location')
+    <div class="breadcrumb-item">
+    </div>
 @endsection
+
+@section('content')
+    <div class="card-body">
+        <form action="{{ route('category.update', $category->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <label for="name">Nama Kategori</label>
+                <input type="text" name="name" class="form-control" id="name" value="{{ old('name', $category->name) }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+    </div>
+@endsection
+
 @push('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
