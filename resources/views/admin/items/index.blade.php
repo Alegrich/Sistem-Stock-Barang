@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-@if (Auth::check() && Auth::user()->role == 'admin')
+@if (Auth::check() && Auth::user()->role =='admin')
 <div class="card-body ">
     {{-- card --}}
     <a href="{{route('items.create')}}" class="btn btn-success btn-sm mb-4">Tambah Items</a>

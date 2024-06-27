@@ -13,8 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
-        return view('admin.category.index', compact('category'));
+        $categories = Category::all();
+        return view('admin.category.index', compact('categories'));
     }
 
     /**
@@ -37,38 +37,42 @@ class CategoryController extends Controller
         Category::create([
             'name' => $validatedData['name'],
         ]);
-        return redirect()->route('admin.category.index')->with('success', 'Category berhasil ditambahkan.');
-    
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect()->route('category.index')
+            ->with('success', 'Category berhasil ditambahkan.');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        return view('admin.category.edit_category');
+        $category = Category::findOrFail($id);
+        return view('admin.category.edit_category', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->update([
+            'name' => $validatedData['name'],
+        ]);
+
+        return redirect()->route('category.index')
+            ->with('success', 'Category berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
     }

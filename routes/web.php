@@ -13,18 +13,18 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Admin\SupplierController;
 
+// Admin routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
-     Route::resource('items', ItemsController::class);
+    Route::resource('items', ItemsController::class);
 
-     Route::resource('stockin', StockInController::class)->names('admin.stockin');
-     Route::resource('stockout', StockOutController::class)->names('admin.stockout');
+    Route::resource('stockin', StockInController::class)->names('admin.stockin');
+    Route::resource('stockout', StockOutController::class)->names('admin.stockout');
 
+    Route::resource('category', CategoryController::class);
 
-     Route::resource('category', CategoryController::class);
-
-     Route::resource('supplier', SupplierController::class);
+    Route::resource('supplier', SupplierController::class);
 
     Route::get('/staff', function () {
         return view('admin.users.index');
@@ -37,16 +37,13 @@ Route::middleware(['auth', 'staff'])->prefix('staff')->group(function () {
     Route::resource('items', ItemsController::class);
     Route::resource('stockin', StockInController::class, ['as' => 'staff']);
     Route::resource('stockout', StockOutController::class, ['as' => 'staff']);
-
 });
 
 // Authentication routes
- Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
- Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
- Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Register route
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
-
-

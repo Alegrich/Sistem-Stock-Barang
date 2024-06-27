@@ -25,14 +25,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($categories as $category)
                             <tr>
-                                <td>1</td>
-                                <td>Elektronik</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $category->name }}</td>
                                 <td>
                                     <button class="btn btn-primary btn-sm" onclick="window.location.href='{{ route('category.edit', ['category' => 1]) }}'">Edit</button>
                                     <button class="btn btn-danger btn-sm" id="delete-button" >Delete</button>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
