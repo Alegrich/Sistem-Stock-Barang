@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\StockOut; // Pastikan memanggil model StockOut yang benar
 
 class StockOutController extends Controller
 {
@@ -12,7 +14,6 @@ class StockOutController extends Controller
     public function index()
     {
         return view('admin.stockOut.index');
-
     }
 
     /**
@@ -28,27 +29,25 @@ class StockOutController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $validatedData = $request->validate([
             'id_items' => 'required|string|max:255',
             'id_suppliers' => 'required|string|max:255',
             'quantity' => 'required|integer|min:1',
         ]);
 
-
-        $stockOut = StockOutController::create([
-            'id_name' => $request->id_name,
-            'id_supplier' => $request->id_supplier,
-            'quantity' => $request->quantity,
-        $stockOut = stockOut::create([
-            'id_items' => $validate['id_items'],
-            'id_suppliers' => $validate['id_suppliers'],
-            'quantity' => $validate['quantity'],
+        // Create new stock out record
+        $stockOut = StockOut::create([
+            'id_items' => $validatedData['id_items'],
+            'id_suppliers' => $validatedData['id_suppliers'],
+            'quantity' => $validatedData['quantity'],
         ]);
-        $product = $stockOut;
-        $product->quantity -= $validate['quantity'];
+
+        // Update product quantity
+        $product = $stockOut; // Assuming $stockOut is the product instance
+        $product->quantity -= $validatedData['quantity'];
         $product->save();
 
-        return view('admin.stockOut.index');
+        return redirect()->route('admin.stockout.index');
     }
 
     /**
