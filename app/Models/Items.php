@@ -14,11 +14,11 @@ class Items extends Model
         'description',
         'sku',
         'image',
-        'id_categories' 
+        'id_categories'
     ];
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'id_categories');
     }
 }
