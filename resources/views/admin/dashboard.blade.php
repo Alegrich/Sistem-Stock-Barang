@@ -102,7 +102,7 @@
     </div>
 
 @endsection
-@extends('layouts.app')
+@extends('layouts.parent')
 @section('title', 'Users')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">

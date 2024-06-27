@@ -34,7 +34,7 @@ Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboa
 // Staff routes
 Route::middleware(['auth', 'staff'])->prefix('staff')->group(function () {
     Route::get('/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
-    Route::resource('items', ItemsController::class);
+    Route::resource('items', ItemsController::class, ['as' => 'staff']);
     Route::resource('stockin', StockInController::class, ['as' => 'staff']);
     Route::resource('stockout', StockOutController::class, ['as' => 'staff']);
    

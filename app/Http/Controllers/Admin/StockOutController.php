@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\StockOut;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class StockOutController extends Controller
 {
@@ -21,7 +22,7 @@ class StockOutController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.stockOut.create_stockOut');
     }
 
     /**
@@ -53,7 +54,21 @@ class StockOutController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        {
+            $request->validate([
+                'id_items' => 'required|exists:id,items',
+                'id_supplier' => 'required|id,supplier',
+                'quantity' => 'required|integer|min:1',
+            ]);
+    
+            $stock = StockOut::create($request->all());
+    
+            $stockOut = $stock->product;
+            $stockOut->save();
+    
+            return redirect()->route('stock.index')->with('success', 'Update recorded successfully.');
+        }
+    
     }
 
     /**
