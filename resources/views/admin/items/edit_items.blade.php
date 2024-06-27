@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.parent')
 @section('title', 'Users')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -7,7 +7,7 @@
         <!-- Users List Table -->
         <div class="container mt-5">
                 <!-- Form -->
-                <form>
+                <form action="" method="POST">
                     <div class="form-group mb-3">
                         <label for="name">Nama</label>
                         <input type="text" class="form-control" id="name" placeholder="Masukkan Nama">

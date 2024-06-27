@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\stockIn;
 use Illuminate\Http\Request;
+
 
 class StockInController extends Controller
 {
@@ -20,7 +22,7 @@ class StockInController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.stockIn.create_stockIn');
     }
 
     /**
@@ -28,7 +30,23 @@ class StockInController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_name' => 'required|exists:name,id',
+            'id_supplier' => 'required|exists:supplier,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $stockIn = stockIn::create([
+            'id_name' => $request->id_name,
+            'id_supplier' => $request->id_supplier,
+            'quantity' => $request->quantity,
+        ]);
+
+        $product = $stockIn->items;
+        $product->quantity += $request->quantity;
+        $product->save();
+
+        return view(route('admin.stockout.index'));
     }
 
     /**
@@ -52,7 +70,7 @@ class StockInController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     /**
