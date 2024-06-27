@@ -35,8 +35,8 @@ class StockInController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'id_items' => 'required|string|max:255',
-            'id_suppliers' => 'required|string|max:255',
+            'id_items' => 'required|exists:items,id',
+            'id_suppliers' => 'required|exists:supplier,id',
             'quantity' => 'required|integer|min:1',
         ]);
 
