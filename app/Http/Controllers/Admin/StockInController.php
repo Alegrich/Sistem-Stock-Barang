@@ -30,7 +30,23 @@ class StockInController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        $request->validate([
+            'id_name' => 'required|exists:name,id',
+            'id_supplier' => 'required|exists:supplier,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $stockIn = stockIn::create([
+            'id_name' => $request->id_name,
+            'id_supplier' => $request->id_supplier,
+            'quantity' => $request->quantity,
+        ]);
+
+        $product = $stockIn->items;
+        $product->quantity += $request->quantity;
+        $product->save();
+
+        return view(route('admin.stockout.index'));
     }
 
     /**
@@ -54,16 +70,7 @@ class StockInController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'id_items' => 'required|exists:id,items',
-            'id_supplier' => 'required|id,supplier',
-            'quantity' => 'required|integer|min:1',
-        ]);
-
-        $stock = StockIn::create($request->all());
-
-        $stockIn = $stock;
-        $stockIn->save();
+        
     }
 
     /**
