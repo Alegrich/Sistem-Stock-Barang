@@ -20,8 +20,8 @@ Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboa
 
      Route::resource('stockin', StockInController::class)->names('admin.stockin');
      Route::resource('stockout', StockOutController::class)->names('admin.stockout');
-    
- 
+
+
      Route::resource('category', CategoryController::class);
 
      Route::resource('supplier', SupplierController::class);
@@ -37,7 +37,7 @@ Route::middleware(['auth', 'staff'])->prefix('staff')->group(function () {
     Route::resource('items', ItemsController::class);
     Route::resource('stockin', StockInController::class, ['as' => 'staff']);
     Route::resource('stockout', StockOutController::class, ['as' => 'staff']);
-   
+
 });
 
 // Authentication routes
