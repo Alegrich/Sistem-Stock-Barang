@@ -2,13 +2,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Staff\StaffController;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Items;
+
+use App\Models\Supplier;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $totalSuppliers = Supplier::count();
+        $totalItems = Items::count();
+        $totalCategories = Category::count();
+
+        return view('admin.dashboard', compact('totalSuppliers', 'totalItems', 'totalCategories'));
     }
 
     /**
@@ -16,7 +25,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -24,7 +33,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -32,7 +41,7 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        
+
     }
 
     /**
@@ -40,7 +49,7 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        
+
     }
 
     /**
@@ -48,7 +57,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+
     }
 
     /**
@@ -56,6 +65,6 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        
+
     }
 }

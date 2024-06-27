@@ -33,8 +33,6 @@
                     <span>Supplier</span>
                 </a>
             </li>
-
-
             <li class="nav-item dropdown {{ Str::startsWith(Request::path(), 'admin/stock') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-box"></i>
                     <span>Stock</span></a>
@@ -43,16 +41,16 @@
                     <li class="{{ request()->routeIs('stockout.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.stockout.index') }}">Stock Out</a></li>
                 </ul>
             </li>
+
         @else
         <li class="menu-header">Dashboard</li>
         <li class="{{ request()->routeIs('staff.*') ? 'active' : '' }}"><a class="nav-link"
             href="{{route('staff.dashboard')}}"><i class="fas fa-home"></i>
             <span>Dashboard Staff</span></a></li>
 
-
         <li class="menu-header">Starter</li>
 
-        <li class="{{ request()->routeIs('#') ? 'active' : '' }}">
+        <li class="{{ request()->routeIs('items.*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('items.index') }}">
                 <i class="fas fa-box"></i>
                 <span>Items</span>

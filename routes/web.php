@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\StockController;
 
 // Admin routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
@@ -19,8 +20,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::resource('items', ItemsController::class);
 
-    Route::resource('stockin', StockInController::class)->names('admin.stockin');
-    Route::resource('stockout', StockOutController::class)->names('admin.stockout');
+    Route::resource('stockin', StockController::class)->names('admin.stockin');
+    Route::resource('stockout', StockController::class)->names('admin.stockout');
 
     Route::resource('category', CategoryController::class);
 

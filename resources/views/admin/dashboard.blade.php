@@ -17,7 +17,7 @@
                 <div class="card bg-primary text-white mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Supplier</h5>
-                        <h2 class="card-text"><strong class="font-size-60">12</strong></h2>
+                        <h2 class="card-text"><strong class="font-size-60">{{ $totalSuppliers }}</strong></h2>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <span class="small text-white"><i class="fas fa-users"></i> Total Suppliers</span>
@@ -28,7 +28,7 @@
                 <div class="card bg-warning text-white mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Item</h5>
-                        <h2 class="card-text"><strong class="font-size-60">24</strong></h2>
+                        <h2 class="card-text"><strong class="font-size-60">{{ $totalItems }}</strong></h2>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <span class="small text-white"><i class="fas fa-box"></i> Total Items</span>
@@ -39,7 +39,7 @@
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Category</h5>
-                        <h2 class="card-text"><strong class="font-size-60">36</strong></h2>
+                        <h2 class="card-text"><strong class="font-size-60">{{ $totalCategories }}</strong></h2>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <span class="small text-white"><i class="fas fa-folder"></i> Total Categories</span>
@@ -189,5 +189,3 @@
       </script>
 
 @endpush
-
-
