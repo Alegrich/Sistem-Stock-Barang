@@ -12,13 +12,13 @@ class Items extends Model
     protected $fillable = [
         'name',
         'description',
-        'sku',
+        'SKU',
         'image',
         'id_categories' 
     ];
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'id_categories');
     }
 }

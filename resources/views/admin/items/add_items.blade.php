@@ -16,31 +16,32 @@
         
     </div>
             <!-- Form -->
-            <form >
+            <form action="{{ route('admin.items.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="form-group mb-3">
                     <label for="name">Nama</label>
-                    <input type="text" class="form-control" id="name" placeholder="Masukkan Nama">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama" required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="name">Deskripsi</label>
-                    <input type="text" class="form-control" id="name" placeholder="Masukkan Nama">
+                    <label for="description">Deskripsi</label>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Masukkan Deskripsi">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="name">Gambar Items</label>
-                    <input type="file" class="form-control" id="name" placeholder="Masukkan Nama">
+                    <label for="image">Gambar Items</label>
+                    <input type="file" class="form-control" id="image" name="image">
                 </div>
                 <div class="form-group mb-3">
                     <label for="category">Kategori</label>
-                    <select class="form-control" id="category">
+                    <select class="form-control" id="category" name="id_categories" required>
                         <option value="">Pilih Kategori</option>
-                        <option value="kategori1">Kategori 1</option>
-                        <option value="kategori2">Kategori 2</option>
-                        <option value="kategori3">Kategori 3</option>
-                        <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
+                        @foreach($category as $categories)
+                            <option value="{{ $categories->id }}">{{ $categories->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            
     <!-- Modal Backdrop -->
 </div>
 @endsection

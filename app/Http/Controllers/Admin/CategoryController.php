@@ -11,6 +11,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
         $category = Category::all();
@@ -37,7 +38,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $validatedData['name'],
         ]);
-        return redirect()->route('admin.category.index')->with('success', 'Category berhasil ditambahkan.');
+        return redirect()->route('category.index')->with('success', 'Category berhasil ditambahkan.');
     
     }
 

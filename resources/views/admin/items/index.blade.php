@@ -10,14 +10,13 @@
 @endsection
 
 @section('content')
-@if (Auth::check() && Auth::user()->role == 'admin')
-<div class="card-body ">
-    {{-- card --}}
-    <a href="{{route('items.create')}}" class="btn btn-success btn-sm mb-4">Tambah Items</a>
-    <a href="#" class="btn btn-danger btn-sm mb-4">Cetak Laporan</a>
-    <!-- Users List Table -->
-    <div class="table">
-            <div class="table-responsive">
+    @if (Auth::check() && Auth::user()->role == 'admin')
+        <div class="card-body ">
+            {{-- card --}}
+            <a href="{{ route('admin.items.create') }}" class="btn btn-success btn-sm mb-4">Tambah Items</a>
+            <!-- Users List Table -->
+            <div class="table">
+                <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                             <tr>
@@ -31,44 +30,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Item 1</td>
-                                <td>Kategori 1</td>
-                                <td><strong>FD-100-SQ</strong></td>
-                                <td><strong>KOSONG</strong></td>
-                                <td><strong>25</strong></td>
-                                <td>
-                                    <button class="btn btn-primary btn-sm">Edit</button>
-                                    <button class="btn btn-danger btn-sm" id="delete-button">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Item 2</td>
-                                <td>Kategori 2</td>
-                                <td><strong>FD-100-SQ</strong></td>
-                                <td><strong>KOSONG</strong></td>
-                                <td><strong>25</strong></td>
-                                <td>
-                                    <button class="btn btn-primary btn-sm">Edit</button>
-                                    <button class="btn btn-danger btn-sm" id="delete-button">Delete</button>
-                                </td>
-                            </tr>
+                            @foreach ($items as $index => $item)
+                                <tr>
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{ $item->category->name ?? 'Tidak ada kategori' }}</td>
+                                    <td><strong>{{$item->SKU}}</strong></td>
+                                    <td><strong>@if($item->image)
+                                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" width="90" height="90">
+                                    @else
+                                        <strong>KOSONG</strong>
+                                    @endif</strong></td>
+                                    <td><strong>25</strong></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Edit</button>
+                                        <button class="btn btn-danger btn-sm" id="delete-button">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
                             <!-- Tambahkan baris lainnya sesuai kebutuhan -->
                         </tbody>
                     </table>
                 </div>
-    </div>
-    {{-- card end --}}
-</div>
-@else
-<div class="card-body ">
-    {{-- card --}}
-    <a href="#" class="btn btn-danger btn-sm mb-4">Cetak Laporan</a>
-    <!-- Users List Table -->
-    <div class="table">
-            <div class="table-responsive">
+            </div>
+            {{-- card end --}}
+        </div>
+    @else
+        <div class="card-body ">
+            {{-- card --}}
+            <a href="#" class="btn btn-danger btn-sm mb-4">Cetak Laporan</a>
+            <!-- Users List Table -->
+            <div class="table">
+                <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                             <tr>
@@ -101,14 +94,14 @@
                         </tbody>
                     </table>
                 </div>
-    </div>
-    {{-- card end --}}
-</div>
-@endif
+            </div>
+            {{-- card end --}}
+        </div>
+    @endif
 @endsection
 @push('script')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -169,7 +162,4 @@
             });
         });
     </script>
-
 @endpush
-
-

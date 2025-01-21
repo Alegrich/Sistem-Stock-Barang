@@ -8,22 +8,21 @@
     <ul class="sidebar-menu">
         @if (Auth::check() && Auth::user()->role == 'admin')
             <li class="menu-header">Dashboard</li>
-            <li class="{{ request()->routeIs('admin.*') ? 'active' : '' }}"><a class="nav-link"
-                href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i>
+            <li class="{{ request()->routeIs('admin.dashboard*') ? 'active' : '' }}"><a class="nav-link" href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i>
                 <span>Dashboard Admin</span></a></li>
 
 
             <li class="menu-header">Starter</li>
 
-            <li class="{{ request()->routeIs('items.*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('items.index') }}">
+            <li class="{{ request()->routeIs('admin.items.*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.items.index') }}">
                     <i class="fas fa-box"></i>
                     <span>Items</span>
                 </a>
             </li>            
             <li class="{{ request()->routeIs('category.*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('category.index') }}">
-                    <i class="fa-solid fa-list"></i>
+                    <i class="fas fa-list"></i>
                     <span>Category</span>
                 </a>
             </li>            
@@ -45,14 +44,14 @@
             </li>
         @else
         <li class="menu-header">Dashboard</li>
-        <li class="{{ request()->routeIs('staff.*') ? 'active' : '' }}"><a class="nav-link"
+        <li class="{{ request()->routeIs('staff.dashboard') ? 'active' : '' }}"><a class="nav-link"
             href="{{route('staff.dashboard')}}"><i class="fas fa-home"></i>
             <span>Dashboard Staff</span></a></li>
 
 
         <li class="menu-header">Starter</li>
 
-        <li class="{{ request()->routeIs('#') ? 'active' : '' }}">
+        <li class="{{ request()->routeIs('items.*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('items.index') }}">
                 <i class="fas fa-box"></i>
                 <span>Items</span>

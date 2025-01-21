@@ -36,10 +36,15 @@
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
+                @php
+                    $categories = \App\Models\Category::count();
+                @endphp 
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Category</h5>
-                        <h2 class="card-text"><strong class="font-size-60">36</strong></h2>
+                        <h2 class="card-text"><strong class="font-size-60">
+                           {{$categories}}
+                        </strong></h2>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <span class="small text-white"><i class="fas fa-folder"></i> Total Categories</span>
@@ -62,17 +67,11 @@
         
         {{-- card end --}}
         
-        {{-- Statistik --}}
-        <div class="card">
-            <canvas id="myChart"></canvas>
-        </div>
-        
     </div>
 
 @endsection
 @push('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -133,28 +132,6 @@
             });
         });
     </script>
-    <script>
-        const ctx = document.getElementById('myChart');
-
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
 
 @endpush
 

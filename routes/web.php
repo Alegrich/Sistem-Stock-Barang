@@ -13,10 +13,15 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Admin\SupplierController;
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
-     Route::resource('items', ItemsController::class);
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
+     Route::resource('items', ItemsController::class)->names('admin.items');
 
      Route::resource('stockin', StockInController::class)->names('admin.stockin');
      Route::resource('stockout', StockOutController::class)->names('admin.stockout');
