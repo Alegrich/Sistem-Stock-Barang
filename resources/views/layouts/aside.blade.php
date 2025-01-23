@@ -20,14 +20,14 @@
                     <span>Items</span>
                 </a>
             </li>            
-            <li class="{{ request()->routeIs('category.*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('category.index') }}">
+            <li class="{{ request()->routeIs('admin.category.*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.category.index') }}">
                     <i class="fas fa-list"></i>
                     <span>Category</span>
                 </a>
             </li>            
-            <li class="{{ request()->routeIs('supplier.*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('supplier.index') }}">
+            <li class="{{ request()->routeIs('admin.supplier.*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.supplier.index') }}">
                     <i class="fas fa-truck"></i>
                     <span>Supplier</span>
                 </a>
@@ -43,7 +43,7 @@
                 </ul>
             </li>
         @else
-        <li class="menu-header">Dashboard</li>
+        {{-- <li class="menu-header">Dashboard</li>
         <li class="{{ request()->routeIs('staff.dashboard') ? 'active' : '' }}"><a class="nav-link"
             href="{{route('staff.dashboard')}}"><i class="fas fa-home"></i>
             <span>Dashboard Staff</span></a></li>
@@ -51,8 +51,8 @@
 
         <li class="menu-header">Starter</li>
 
-        <li class="{{ request()->routeIs('items.*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('items.index') }}">
+        <li class="{{ request()->routeIs('admin.items.*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin.items.index') }}">
                 <i class="fas fa-box"></i>
                 <span>Items</span>
             </a>
@@ -64,7 +64,7 @@
                 <li class="{{ request()->routeIs('staff.stockin.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('staff.stockin.index') }}">Stock In</a></li>
                 <li class="{{ request()->routeIs('staff.stockout.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('staff.stockout.index') }}">Stock Out</a></li>
             </ul>
-        </li>
+        </li> --}}
         @endif
 
     </ul>

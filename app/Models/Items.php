@@ -13,6 +13,7 @@ class Items extends Model
         'name',
         'description',
         'SKU',
+        'qty',
         'image',
         'id_categories' 
     ];

@@ -18,13 +18,13 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
-     Route::resource('items', ItemsController::class)->names('admin.items');
+     Route::resource('items', ItemsController::class);
 
-     Route::resource('stockin', StockInController::class)->names('admin.stockin');
-     Route::resource('stockout', StockOutController::class)->names('admin.stockout');
+     Route::resource('stockin', StockInController::class);
+     Route::resource('stockout', StockOutController::class);
     
  
      Route::resource('category', CategoryController::class);

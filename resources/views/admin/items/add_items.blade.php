@@ -27,6 +27,10 @@
                     <input type="text" class="form-control" id="description" name="description" placeholder="Masukkan Deskripsi">
                 </div>
                 <div class="form-group mb-3">
+                    <label for="qty">Jumlah Items</label>
+                    <input type="number" class="form-control" id="qty" name="qty" placeholder="Masukkan jumlah Items">
+                </div>
+                <div class="form-group mb-3">
                     <label for="image">Gambar Items</label>
                     <input type="file" class="form-control" id="image" name="image">
                 </div>
@@ -46,7 +50,7 @@
 </div>
 @endsection
 @push('script')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
@@ -107,7 +111,7 @@
                 })
             });
         });
-    </script>
+    </script> --}}
 
 @endpush
 

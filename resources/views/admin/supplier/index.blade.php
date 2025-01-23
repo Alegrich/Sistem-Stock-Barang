@@ -12,7 +12,7 @@
 @section('content')
     <div class="card-body">
         {{-- card --}}
-        <a href="{{route('supplier.create')}}" class="btn btn-success btn-sm mb-4">Tambah Supplier</a>
+        <a href="{{route('admin.supplier.create')}}" class="btn btn-success btn-sm mb-4">Tambah Supplier</a>
         <!-- Users List Table -->
         <div class="table">
             <div class="table-responsive">
@@ -33,7 +33,7 @@
                                 <td>(021) 8853333</td>
                                 <td>Jalan Jendral A. Yani</td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm" onclick="window.location.href='{{ route('supplier.edit', ['supplier' => 1]) }}'">Edit</button>
+                                    <button class="btn btn-primary btn-sm" onclick="window.location.href='{{ route('admin.supplier.edit', ['supplier' => 1]) }}'">Edit</button>
                                     <button class="btn btn-danger btn-sm" id="delete-button">Delete</button>
                                 </td>
                             </tr>

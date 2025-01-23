@@ -12,7 +12,7 @@
 @section('content')
     <div class="card-body">
         {{-- card --}}
-        <a href="{{route('category.create')}}" class="btn btn-success btn-sm mb-4">Tambah Kategori</a>
+        <a href="{{route('admin.category.create')}}" class="btn btn-success btn-sm mb-4">Tambah Kategori</a>
         <!-- Users List Table -->
         <div class="table">
             <div class="table-responsive">
@@ -30,7 +30,7 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{$categories->name}}</td>
                                     <td>
-                                        <button class="btn btn-primary btn-sm" onclick="window.location.href='{{ route('category.edit', ['category' => 1]) }}'">Edit</button>
+                                        <button class="btn btn-primary btn-sm" onclick="window.location.href='{{ route('admin.category.edit', ['category' => 1]) }}'">Edit</button>
                                         <button class="btn btn-danger btn-sm" id="delete-button" >Delete</button>
                                     </td>
                                 </tr>

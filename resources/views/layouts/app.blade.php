@@ -42,7 +42,7 @@
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
-            @include('layouts.sidebar')
+            @include('layouts.aside')
 
             <!-- Layout container -->
             <div class="layout-page">

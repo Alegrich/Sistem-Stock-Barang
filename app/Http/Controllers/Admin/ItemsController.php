@@ -7,6 +7,7 @@ use App\Models\Items;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
@@ -40,6 +41,7 @@ class ItemsController extends Controller
             'id_categories' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'qty' => 'nullable|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -55,6 +57,7 @@ class ItemsController extends Controller
         Items::create([
             'name' => $validatedData['name'],
             'description' => $validatedData['description'] ?? '',
+            'qty' => $validatedData['qty'] ?? '',
             'SKU' => $sku,
             'image' => $imagePath,
             'id_categories' => $validatedData['id_categories'],
@@ -77,31 +80,52 @@ class ItemsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = Items::find($id);
+        $category = Category::all();
+        return view('admin.items.edit_items', compact('item', 'category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Items $items)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'qty' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif|max:2048',
             'id_categories' => 'required|exists:categories,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // optional: validasi gambar
         ]);
 
-        if ($request->hasFile('image')) {
-            // Menghandle upload gambar baru
-            $imagePath = $request->file('image')->store('items', 'public');
-            $validatedData['image'] = $imagePath;
-        }
-        // Update data item
-        $items->update($validatedData);
+        $item = Items::find($id);
 
-        return redirect()->route('admin.items.index')->with('success', 'Items Berhasil di Update.');
+        if (!$item) {
+            return redirect()->route('admin.items.index')->with('error', 'Item not found');
+        }
+
+        // Update data item
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->qty = $request->qty;
+        $item->id_categories = $request->id_categories;
+
+        // Handle image upload if there's a new image
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($item->image) {
+                Storage::delete('public/' . $item->image);
+            }
+
+            // Store new image
+            $item->image = $request->file('image')->store('images', 'public');
+        }
+
+        $item->save();
+
+        return redirect()->route('admin.items.index')->with('success', 'Item updated successfully');
     }
+
 
 
     /**
@@ -109,6 +133,8 @@ class ItemsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = Items::find($id);
+        $item->delete();
+        return redirect()->route('admin.items.index')->with('success', 'Items Berhasil dihapus.');
     }
 }

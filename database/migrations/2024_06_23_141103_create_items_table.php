@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('SKU')->unique();
+            $table->integer('qty')->nullable();
             $table->string('image')->nullable(); // Path untuk foto barang
             $table->timestamps();
         });

@@ -13,7 +13,7 @@
     <div class="card-body">
         {{-- card --}}
         <div class="row">
-            <div class="col-xl-3 col-md-6">
+            {{-- <div class="col-xl-3 col-md-6">
                 <div class="card bg-primary text-white mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Supplier</h5>
@@ -23,12 +23,15 @@
                         <span class="small text-white"><i class="fas fa-users"></i> Total Suppliers</span>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-xl-3 col-md-6">
+                @php
+                    $items = \App\Models\Items::count();
+                @endphp 
                 <div class="card bg-warning text-white mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Item</h5>
-                        <h2 class="card-text"><strong class="font-size-60">24</strong></h2>
+                        <h2 class="card-text"><strong class="font-size-60">{{$items}}</strong></h2>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <span class="small text-white"><i class="fas fa-box"></i> Total Items</span>
@@ -51,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6">
+            {{-- <div class="col-xl-3 col-md-6">
                 <div class="card bg-danger text-white mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Staff</h5>
@@ -61,7 +64,7 @@
                         <span class="small text-white"><i class="fas fa-user"></i> Total Staff</span>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         
         

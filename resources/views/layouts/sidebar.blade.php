@@ -22,23 +22,23 @@
         </li>
         <!-- Items -->
         <li class="menu-item">
-            <a href="{{ route('items') }}" class="menu-link menu-toggle">
+            <a  class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-package"></i>
                 <div data-i18n="Dashboards">Items</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('items') }}" class="menu-link">
+                    <a  class="menu-link">
                         <div data-i18n="Basic">Items List</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('admin.items.stockIn') }}" class="menu-link">
+                    <a  class="menu-link">
                         <div data-i18n="Basic">Stock In</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('admin.items.stockOut') }}" class="menu-link">
+                    <a  class="menu-link">
                         <div data-i18n="Basic">Stock Out</div>
                     </a>
                 </li>
@@ -46,7 +46,7 @@
         </li>
         <!-- Category -->
         <li class="menu-item">
-            <a href="{{ route('category') }}" class="menu-link">
+            <a href="{{ route('admin.category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-category"></i>
                 <div data-i18n="Dashboards">Category</div>
             </a>
@@ -59,20 +59,6 @@
             </a>
         </li>
         <!-- Staff -->
-        
-                <li class="menu-item">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-user"></i>
-                        <div data-i18n="Authentications">Staff</div>
-                    </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="{{ route('admin.staff.index') }}" class="menu-link">
-                                <div data-i18n="Basic">Staff List</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
         @else
         <li class="menu-item">
             <a href="{{ route('staff.dashboard') }}" class="menu-link">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.parent')
 @section('title', 'Users')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -7,31 +7,48 @@
         <!-- Users List Table -->
         <div class="container mt-5">
                 <!-- Form -->
-                <form>
+                <form action="{{ route('admin.items.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT') <!-- Method spoofing PUT untuk update -->
                     <div class="form-group mb-3">
                         <label for="name">Nama</label>
-                        <input type="text" class="form-control" id="name" placeholder="Masukkan Nama">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama" value="{{ old('name', $item->name) }}" required>
                     </div>
+                
                     <div class="form-group mb-3">
-                        <label for="name">Deskripsi</label>
-                        <input type="text" class="form-control" id="name" placeholder="Masukkan Nama">
+                        <label for="description">Deskripsi</label>
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Masukkan Deskripsi" value="{{ old('description', $item->description) }}">
                     </div>
+                
                     <div class="form-group mb-3">
-                        <label for="name">Gambar Items</label>
-                        <input type="file" class="form-control" id="name" placeholder="Masukkan Nama">
+                        <label for="qty">Jumlah Items</label>
+                        <input type="number" class="form-control" id="qty" name="qty" placeholder="Masukkan jumlah Items" value="{{ old('qty', $item->qty) }}">
                     </div>
+                    
+                
+                    <div class="form-group mb-3">
+                        <label for="image">Gambar Items</label>
+                        <input type="file" class="form-control" id="image" name="image">
+                        @if($item->image)
+                            <p class="mt-5">Current Image: <img src="{{ asset('storage/' . $item->image) }}" alt="Current Image" width="100" height="100"></p>
+                        @endif
+                    </div>
+                
                     <div class="form-group mb-3">
                         <label for="category">Kategori</label>
-                        <select class="form-control" id="category">
+                        <select class="form-control" id="category" name="id_categories" required>
                             <option value="">Pilih Kategori</option>
-                            <option value="kategori1">Kategori 1</option>
-                            <option value="kategori2">Kategori 2</option>
-                            <option value="kategori3">Kategori 3</option>
-                            <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
+                            @foreach($category as $categories)
+                                <option value="{{ $categories->id }}" {{ old('id_categories', $item->id_categories) == $categories->id ? 'selected' : '' }}>
+                                    {{ $categories->name }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </form>
+                
             </div>
         <!-- Modal Backdrop -->
     </div>
