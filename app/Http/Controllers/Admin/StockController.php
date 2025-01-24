@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\StockLog;
 use Illuminate\Http\Request;
 
-class StockInController extends Controller
+class StockController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.stockIn.index');
+        $logs = StockLog::with('item')->get(); // Load relasi item
+        return view('admin.stock.index', compact('logs'));
     }
 
     /**

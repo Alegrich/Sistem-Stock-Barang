@@ -6,6 +6,7 @@ use App\Models\Items;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\StockLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -103,6 +104,20 @@ class ItemsController extends Controller
         if (!$item) {
             return redirect()->route('admin.items.index')->with('error', 'Item not found');
         }
+        if((int)$request->qty  > (int)$item->qty){
+            StockLog::create([
+                'item_id' => $item->id,
+                'quantity' => $request->qty - $item->qty,
+                'type' => 'in',
+            ]);
+        }
+        if((int)$request->qty < (int)$item->qty){
+            StockLog::create([
+                'item_id' => $item->id,
+                'quantity' => $item->qty - $request->qty,
+                'type' => 'out',
+            ]);
+        }
 
         // Update data item
         $item->name = $request->name;
@@ -120,7 +135,7 @@ class ItemsController extends Controller
             // Store new image
             $item->image = $request->file('image')->store('images', 'public');
         }
-
+        
         $item->save();
 
         return redirect()->route('admin.items.index')->with('success', 'Item updated successfully');

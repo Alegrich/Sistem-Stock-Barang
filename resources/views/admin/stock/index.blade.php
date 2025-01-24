@@ -2,7 +2,7 @@
 
 @section('title', 'Admin')
 
-@section('main', 'Stock In')
+@section('main', 'Stock')
 
 @section('location')
 @endsection
@@ -19,30 +19,21 @@
                           <tr>
                             <th scope="col">ID</th>
                             <th scope="col">ITEM</th>
-                            <th scope="col">SUPPLIER</th>
+                            <th scope="col">TYPE</th>
                             <th scope="col">QUANTITY</th>
                             <th scope="col">RECEIVED AT</th>
                           </tr>
                         </thead>
                         <tbody>
+                            @foreach ($logs as $index => $log)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $log->item->name }}</td>
+                                <td>{{ ucfirst($log->type) }}</td>
+                                <td>{{ $log->quantity }}</td>
+                                <td>{{ $log->created_at }}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                        @endforeach
                         </tbody>
                         </tbody>
                     </table>

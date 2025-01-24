@@ -20,28 +20,29 @@
                     <span>Items</span>
                 </a>
             </li>            
+            
             <li class="{{ request()->routeIs('admin.category.*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.category.index') }}">
                     <i class="fas fa-list"></i>
                     <span>Category</span>
                 </a>
-            </li>            
-            <li class="{{ request()->routeIs('admin.supplier.*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.supplier.index') }}">
-                    <i class="fas fa-truck"></i>
-                    <span>Supplier</span>
+            </li>                  
+
+            <li class="{{ request()->routeIs('admin.stock.*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.stock.index') }}">
+                    <i class="fas fa-box"></i>
+                    <span>Stock</span>
                 </a>
-            </li>            
+            </li>                  
 
-
-            <li class="nav-item dropdown {{ Str::startsWith(Request::path(), 'admin/stock') ? 'active' : '' }}">
+            {{-- <li class="nav-item dropdown {{ Str::startsWith(Request::path(), 'admin/stock') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-box"></i>
                     <span>Stock</span></a>       
                 <ul class="dropdown-menu">
                     <li class="{{ request()->routeIs('stockin.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.stockin.index') }}">Stock In</a></li>
                     <li class="{{ request()->routeIs('stockout.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.stockout.index') }}">Stock Out</a></li>
                 </ul>
-            </li>
+            </li> --}}
         @else
         {{-- <li class="menu-header">Dashboard</li>
         <li class="{{ request()->routeIs('staff.dashboard') ? 'active' : '' }}"><a class="nav-link"

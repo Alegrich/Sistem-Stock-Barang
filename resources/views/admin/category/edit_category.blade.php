@@ -12,14 +12,23 @@
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
                 <!-- Form -->
-                <form action="{{ route('category.store') }}" method="POST">
+                <form action="{{ route('admin.category.update', $category->id) }}" method="POST">
                     @csrf
+                    @method('PUT') <!-- Spoofing method PUT untuk update -->
                     <div class="form-group mb-3">
                         <label for="name">Nama</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama">
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Masukkan Nama"
+                            value="{{ old('name', $category->name) }}"
+                            required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </form>
+                
     <!-- Modal Backdrop -->
 </div>
 @endsection

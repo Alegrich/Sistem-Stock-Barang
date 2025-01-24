@@ -22,4 +22,10 @@ class Items extends Model
     {
         return $this->belongsTo(Category::class, 'id_categories');
     }
+
+    public function stockLogs()
+{
+    return $this->hasMany(StockLog::class);
+}
+
 }

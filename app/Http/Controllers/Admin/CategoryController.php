@@ -38,7 +38,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $validatedData['name'],
         ]);
-        return redirect()->route('category.index')->with('success', 'Category berhasil ditambahkan.');
+        return redirect()->route('admin.category.index')->with('success', 'Category berhasil ditambahkan.');
     
     }
 
@@ -55,7 +55,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.category.edit_category');
+        $category = Category::find($id);
+        return view('admin.category.edit_category', compact('category'));
     }
 
     /**
@@ -63,7 +64,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Category::where('id', $id)->update([
+            'name' => $validatedData['name'],
+        ]);
+
+        return redirect()->route('admin.category.index')->with('success', 'Category berhasil diubah.');
     }
 
     /**
@@ -71,6 +80,8 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        return redirect()->route('admin.category.index')->with('success', 'Category berhasil dihapus.');
     }
 }

@@ -5,8 +5,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ItemsController;
-use App\Http\Controllers\Admin\StockInController;
-use App\Http\Controllers\Admin\StockOutController;
+use App\Http\Controllers\Admin\StockController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -23,8 +22,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
      Route::resource('items', ItemsController::class);
 
-     Route::resource('stockin', StockInController::class);
-     Route::resource('stockout', StockOutController::class);
+     Route::resource('stock', StockController::class);
     
  
      Route::resource('category', CategoryController::class);
@@ -37,13 +35,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 });
 
 // Staff routes
-Route::middleware(['auth', 'staff'])->prefix('staff')->group(function () {
-    Route::get('/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
-    Route::resource('items', ItemsController::class);
-    Route::resource('stockin', StockInController::class, ['as' => 'staff']);
-    Route::resource('stockout', StockOutController::class, ['as' => 'staff']);
-   
-});
+
 
 // Authentication routes
  Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');

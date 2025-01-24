@@ -12,7 +12,7 @@
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
                 <!-- Form -->
-                <form action="{{ route('category.store') }}" method="POST">
+                <form action="{{ route('admin.category.store') }}" method="POST">
                     @csrf
                     <div class="form-group mb-3">
                         <label for="name">Nama</label>

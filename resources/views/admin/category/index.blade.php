@@ -30,8 +30,12 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{$categories->name}}</td>
                                     <td>
-                                        <button class="btn btn-primary btn-sm" onclick="window.location.href='{{ route('admin.category.edit', ['category' => 1]) }}'">Edit</button>
-                                        <button class="btn btn-danger btn-sm" id="delete-button" >Delete</button>
+                                        <a href="{{route('admin.category.edit', $categories->id)}}"  class="btn btn-primary btn-sm">Edit</a>
+                                        <form action="{{ route('admin.category.destroy', $categories->id) }}" method="POST" style="display:inline;" id="delete-form-{{ $categories->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $categories->id }})">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -47,65 +51,28 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('.datatables-users').DataTable({
-                responsive: {
-                    details: {
-                        type: 'column',
-                        target: 'td.control'
-                    }
-                },
-                columnDefs: [{
-                    className: 'control',
-                    orderable: false,
-                    targets: 0
-                }],
-                pagingType: "full_numbers",
-                language: {
-                    search: "",
-                    searchPlaceholder: "Search..."
-                }
-            });
-
-            $('.edit-record').on('click', function() {
-                let userId = $(this).data('id');
-                let userName = $(this).data('name');
-                let userEmail = $(this).data('email');
-                let userRole = $(this).data('role');
-                let userBilling = $(this).data('billing');
-                let userStatus = $(this).data('status');
-
-                $('#editName').val(userName);
-                $('#editEmail').val(userEmail);
-                $('#editRole').val(userRole);
-                $('#editBilling').val(userBilling);
-                $('#editStatus').val(userStatus);
-            });
-
-            $('.delete-record').on('click', function() {
-                let userId = $(this).data('id');
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                        // Call delete API or function here
-                    }
-                })
-            });
+<script>
+    function confirmDelete(itemId) {
+        Swal.fire({
+            title: 'Kamu Yakin?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya, Hapus saja!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Jika pengguna mengonfirmasi, kirimkan form untuk menghapus item
+                document.getElementById('delete-form-' + itemId).submit();
+                Swal.fire(
+                    'Terhapus!',
+                    'Item telah sukses terhapus.',
+                    'sukses'
+                );
+            }
         });
-    </script>
+    }
+</script>
 
 @endpush
 
